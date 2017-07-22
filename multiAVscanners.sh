@@ -1,5 +1,33 @@
 #!/bin/sh
 
+# multiAVscanners.sh - Script BASH para atualizar ou fazer varreduras em arquivos com AVs no Linux.
+#
+# Paulo S. G. Ferraz - paulosgf.pf@gmail.com
+#
+# --------------------------------------------------------------------------------------------------------------
+#
+# Uso:
+# multiAVscanners.sh "arquivo a ser varrido"... OU...
+#
+# multiAVscanners.sh update
+#
+# --------------------------------------------------------------------------------------------------------------
+#
+# Histórico:
+#
+# v1.0 - Sáb Jul 22 19:49:33 BRT 2017 - Paulo S. G. Ferraz
+#       - Versão inicial, com função de ajuda, outra para atualização dos AVs e outra para a varredura de um 
+#         arquivo.
+#
+# -------------------------------------------------------------------------------------------------------------
+#
+# COPYRIGHT: Este programa é GPL.
+#
+# -------------------------------------------------------------------------------------------------------------
+#
+# Funções:
+
+# Ajuda do script
 ajuda()	{
 	echo "$0 - Faltou argumento..."
 	echo
@@ -10,8 +38,10 @@ ajuda()	{
 	exit 1
 }
 
+# Se não há argumento, exibe a ajuda
 [ "$#" -eq 0 ] && ajuda;
 
+# Inicia os AVs
 daemonStart() {
 ### Inicia daemons ###
 
@@ -49,6 +79,7 @@ sudo service avguard status > /dev/null; [ "$?" -ne 0 ] && sudo service avguard 
 
 }
 
+# Para os AVs
 daemonStop()	{
 sudo service clamav-daemon stop
 sudo service clamav-freshclam stop
@@ -61,6 +92,7 @@ sudo service kav4fs-supervisor stop
 sudo service avguard stop
 }
 
+# Atualiza os AVs
 atualiza()	{	
 	# clamav
 	sudo freshclam
@@ -155,6 +187,7 @@ atualiza()	{
                 fi
 }
 
+# Faz varredura de virus em arquivo
 varredura()	{
 # Scan
 	# clamav
@@ -219,11 +252,11 @@ varredura()	{
         echo
 }	
 
+# Corpo do script
 daemonStart
 
 # Scan ou Update...
 
-# Update
 if [ $1 = update ]; then 
 	atualiza
 else
