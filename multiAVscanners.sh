@@ -53,7 +53,7 @@ sudo service clamav-freshclam status > /dev/null; [ "$?" -ne 0 ] && sudo service
 sudo service avast status > /dev/null; [ "$?" -ne 0 ] && sudo service avast start
 
 # AVG
-# avgd
+sudo service avgd status > /dev/null; [ "$?" -ne 0 ] && sudo service avgd start
 
 # F-Prot
 # não tem daemon
@@ -72,7 +72,7 @@ sudo service sav-protect status > /dev/null; [ "$?" -ne 0 ] && sudo service sav-
 sudo service kav4fs-supervisor status > /dev/null; [ "$?" -ne 0 ] && sudo service kav4fs-supervisor start
 
 # BitDefender
-# bd 
+sudo service bd status > /dev/null; [ "$?" -ne 0 ] && sudo service bd start
 
 # Avira
 sudo service avguard status > /dev/null; [ "$?" -ne 0 ] && sudo service avguard start
