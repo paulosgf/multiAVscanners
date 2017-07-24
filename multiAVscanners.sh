@@ -90,6 +90,8 @@ sudo service zavd stop
 sudo service sav-protect stop
 sudo service kav4fs-supervisor stop
 sudo service avguard stop
+sudo service avgd stop
+sudo service bd stop
 }
 
 # Atualiza os AVs
@@ -104,7 +106,7 @@ atualiza()	{
 			echo -e "\033[43;31;1;5m Update Falhou\033[m"
 		fi
 	# avast
-	sudo foobar
+	sudo /var/lib/avast/Setup/avast.vpsupdate
                 if [ "$?" -eq 0 ]; then
                         echo -e '\033[43;34m Avast \033[m'
                         echo -e "\033[43;31;1;5m Update Ok\033[m"
@@ -122,7 +124,7 @@ atualiza()	{
                         echo -e "\033[43;31;1;5m Update Falhou\033[m"
                 fi
 	# f-prot
-	sudo foobar
+	sudo /opt/f-prot/fpupdate
                 if [ "$?" -eq 0 ]; then
                         echo -e '\033[43;34m F-prot \033[m'
                         echo -e "\033[43;31;1;5m Update Ok\033[m"
@@ -131,7 +133,7 @@ atualiza()	{
                         echo -e "\033[43;31;1;5m Update Falhou\033[m"
                 fi
 	# comodo
-	sudo foobar
+	sudo /opt/COMODO/cavupdater
                 if [ "$?" -eq 0 ]; then
                         echo -e '\033[43;34m Comodo \033[m'
                         echo -e "\033[43;31;1;5m Update Ok\033[m"
@@ -150,7 +152,7 @@ atualiza()	{
                         echo -e "\033[43;31;1;5m Update Falhou\033[m"
                 fi
 	# Sophos
-        sudo foobar
+        sudo /opt/sophos-av/bin/savupdate -v 5
                 if [ "$?" -eq 0 ]; then
                         echo -e '\033[43;34m Sophos \033[m'
                         echo -e "\033[43;31;1;5m Update Ok\033[m"
