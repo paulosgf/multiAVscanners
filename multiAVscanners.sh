@@ -161,7 +161,8 @@ atualiza()	{
                         echo -e "\033[43;31;1;5m Update Falhou\033[m"
                 fi
 	# Kaspersky
-	sudo foobar
+	TSK=$(sudo /opt/kaspersky/kav4fs/bin/kav4fs-control --create-task atualiza --use-task-type=Update | sed 's/[^0-9\+]//g')
+	sudo /opt/kaspersky/kav4fs/bin/kav4fs-control --start-task "$TSK"	
                 if [ "$?" -eq 0 ]; then
                         echo -e '\033[43;34m Kaspersky \033[m'
                         echo -e "\033[43;31;1;5m Update Ok\033[m"
